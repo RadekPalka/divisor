@@ -1,18 +1,11 @@
 const express = require("express");
-const bodyParser = require('body-parser');
+const {calcRouter}= require("./routes/calc");
 const app = express();
-let result= "Nie wypełniono formularza"
-app.use(express.static("public"))
-app.use(express.json())
 
-app.post("/calc/check", (req, res) =>{
-    const {resMessage}= req.body
-    result = resMessage
+app.use(express.static("public"));
+app.use(express.json());
+app.use("/calc", calcRouter);
 
-})
-app.get("/calc/check", (req, res)=>{
-    res.send(result)
-})
 
 
 
